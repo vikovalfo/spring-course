@@ -16,9 +16,9 @@ public class UserController {
     @GetMapping("/details")
     public String details(Model model) {
 
-        User user = new User("Andres", "Guzman");
-        user.setEmail("andres@correo.com");
-        model.addAttribute("title", "Hola Mundo Spring Boot");
+        User user = new User("Alessa", "Valencia");
+        user.setEmail("alessa@email.com");
+        model.addAttribute("title", "Hello world Spring Boot");
         model.addAttribute("user", user);
         return "details";
     }

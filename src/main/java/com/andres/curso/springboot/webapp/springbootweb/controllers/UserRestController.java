@@ -20,11 +20,11 @@ public class UserRestController {
     @GetMapping(path="/details")
     public UserDto details() {
 
-        User user = new User("Andres", "Guzman");
+        User user = new User("Alessa", "Valencia");
 
         UserDto userDto = new UserDto();
         userDto.setUser(user);
-        userDto.setTitle("Hola Mundo Spring Boot");
+        userDto.setTitle("Hello world Spring Boot");
 
         return userDto;
     }
