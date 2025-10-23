@@ -1,4 +1,4 @@
-package com.andres.curso.springboot.webapp.springbootweb.models;
+package com.vikovalfo.springboot_course.spring_mvc.models;
 
 public class User {
     

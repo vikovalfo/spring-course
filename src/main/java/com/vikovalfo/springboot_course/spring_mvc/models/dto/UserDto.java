@@ -1,6 +1,6 @@
-package com.andres.curso.springboot.webapp.springbootweb.models.dto;
+package com.vikovalfo.springboot_course.spring_mvc.models.dto;
 
-import com.andres.curso.springboot.webapp.springbootweb.models.User;
+import com.vikovalfo.springboot_course.spring_mvc.models.User;
 
 public class UserDto {
     
