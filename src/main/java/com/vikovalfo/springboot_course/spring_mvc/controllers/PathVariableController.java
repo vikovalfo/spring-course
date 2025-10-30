@@ -3,7 +3,9 @@ package com.vikovalfo.springboot_course.spring_mvc.controllers;
 import com.vikovalfo.springboot_course.spring_mvc.models.User;
 import com.vikovalfo.springboot_course.spring_mvc.models.dto.ParamDto;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -36,6 +38,8 @@ public class PathVariableController {
     @Value("#{${config.valuesMap}.description}")
     private String description;
 
+    @Autowired
+    private Environment environment;
 
     @GetMapping("/baz/{message}")
     public ParamDto baz(@PathVariable String message) {
@@ -62,6 +66,7 @@ public class PathVariableController {
     public Map<String, Object> values(@Value("${config.code}") Integer code) {
         Map<String, Object> json = new HashMap<>();
         json.put("message", message);
+        json.put("envMessage", environment.getProperty("config.message"));
         json.put("code", code);
         json.put("list", listOfValues);
         json.put("spellist", spelList);
