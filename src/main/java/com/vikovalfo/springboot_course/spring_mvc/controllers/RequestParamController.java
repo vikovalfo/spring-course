@@ -1,11 +1,12 @@
 package com.vikovalfo.springboot_course.spring_mvc.controllers;
 
-import com.vikovalfo.springboot_course.spring_mvc.models.dto.ParamDto;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.vikovalfo.springboot_course.spring_mvc.controllers.models.dto.ParamDto;
 
 @RestController
 @RequestMapping("/api/params")

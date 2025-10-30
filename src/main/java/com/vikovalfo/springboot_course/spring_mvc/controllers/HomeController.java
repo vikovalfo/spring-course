@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
     @GetMapping({ "", "/", "/home" })
     public String home() {
-        return "forward:/list";// redirect:/list forward preserves the data from the request through dispatcher
+        return "forward:/details";// redirect:/list forward preserves the data from the request through dispatcher
     }
 }

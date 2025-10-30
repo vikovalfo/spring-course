@@ -1,6 +1,6 @@
-package com.vikovalfo.springboot_course.spring_mvc.models.dto;
+package com.vikovalfo.springboot_course.spring_mvc.controllers.models.dto;
 
-import com.vikovalfo.springboot_course.spring_mvc.models.User;
+import com.vikovalfo.springboot_course.spring_mvc.controllers.models.User;
 
 public class UserDto {
     

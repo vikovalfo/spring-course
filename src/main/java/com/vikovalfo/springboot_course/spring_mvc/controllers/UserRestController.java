@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.vikovalfo.springboot_course.spring_mvc.models.User;
-import com.vikovalfo.springboot_course.spring_mvc.models.dto.UserDto;
+import com.vikovalfo.springboot_course.spring_mvc.controllers.models.User;
+import com.vikovalfo.springboot_course.spring_mvc.controllers.models.dto.UserDto;
 
 @RestController
 @RequestMapping("/api")
@@ -36,11 +36,6 @@ public class UserRestController {
         User user3 = new User("Jhon", "Doe");
 
         List<User> users = Arrays.asList(user, user2, user3);
-        // List<User> users = new ArrayList<>();
-        // users.add(user);
-        // users.add(user2);
-        // users.add(user3);
-
         return users;
     }
     

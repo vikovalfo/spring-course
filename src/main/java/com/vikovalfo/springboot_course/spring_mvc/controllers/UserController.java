@@ -9,7 +9,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
-import com.vikovalfo.springboot_course.spring_mvc.models.User;
+import com.vikovalfo.springboot_course.spring_mvc.controllers.models.User;
 
 @Controller
 public class UserController {

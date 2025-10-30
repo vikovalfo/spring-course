@@ -1,8 +1,5 @@
 package com.vikovalfo.springboot_course.spring_mvc.controllers;
 
-import com.vikovalfo.springboot_course.spring_mvc.models.User;
-import com.vikovalfo.springboot_course.spring_mvc.models.dto.ParamDto;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
@@ -12,6 +9,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import com.vikovalfo.springboot_course.spring_mvc.controllers.models.User;
+import com.vikovalfo.springboot_course.spring_mvc.controllers.models.dto.ParamDto;
 
 
 @RestController

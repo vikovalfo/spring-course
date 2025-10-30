@@ -27,9 +27,8 @@
                 <td th:if="${not (user.email!=null)}" th:text="${' - '}"></td>
             </tr>
         </tbody>
-
-
     </table>
+<a th:href="@{'/api/params/foo?message='} + ${title}">Go to Message.</a>
 
 </body>
 </html>

@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title th:text="${title}">Document</title>
 </head>
+
 <body>
     <h1 th:text="${title}"></h1>
     <ul>
@@ -14,6 +16,12 @@
         <li th:if="${user.email}" th:text="${user.email}"></li>
         <li th:if="${user.email == null}" th:text="${'no email'}"></li>
     </ul>
-
+    <a th:href="@{/list}">List of Users.</a>
+    <a th:href="@{/api/params/foo?message=Oh hai salutes}">List of Users.</a>
+    <a th:href="@{/api/params/foo(message='oh hai jude')}">Endpoint foo.</a>
+    <a th:href="@{/api/params/bar(text='hohoho', code=123123)}">Endpoint foo.</a>
+    <a th:href="@{'/api/var/baz/' + ${title}}">Endpoint baz.</a>
+    <a th:href="@{'/api/var/baz/' + 'Oh hello hello'}">Endpoint baz.</a>
 </body>
+
 </html>

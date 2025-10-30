@@ -1,4 +1,4 @@
-package com.vikovalfo.springboot_course.spring_mvc.models.dto;
+package com.vikovalfo.springboot_course.spring_mvc.controllers.models.dto;
 
 public class ParamDto {
     private String message;
