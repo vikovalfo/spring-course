@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 
 import com.vikovalfo.spring_course.ioc.models.Product;
 
+// @SessionScope per http session, shopping cart, logins
+// @RequestScope per request singleton-like but oly for the mapped operation
 @Repository("largeLists")
 public class ProductRepositoryImpl implements ProductRepository {
 
