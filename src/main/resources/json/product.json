@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "name": "Play station one",
+        "price": 70
+    },
+    {
+        "id": 2,
+        "name": "Xbox legacy",
+        "price": 80
+    },
+    {
+        "id": 3,
+        "name": "Play station 2",
+        "price": 90
+    },
+    {
+        "id": 4,
+        "name": "Xbox 360",
+        "price": 125
+    },
+    {
+        "id": 5,
+        "name": "Plays station 3",
+        "price": 250
+    },
+    {
+        "id": 6,
+        "name": "Xbox one",
+        "price": 300
+    },
+    {
+        "id": 7,
+        "name": "Xbox series S/X",
+        "price": 400
+    },
+    {
+        "id": 8,
+        "name": "Plays station 4",
+        "price": 350
+    },
+    {
+        "id": 9,
+        "name": "Plays station 5",
+        "price": 500
+    }
+]
