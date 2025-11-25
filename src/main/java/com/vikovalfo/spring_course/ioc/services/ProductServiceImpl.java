@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.vikovalfo.spring_course.ioc.models.Product;
@@ -13,6 +14,10 @@ import com.vikovalfo.spring_course.ioc.repositories.ProductRepository;
 public class ProductServiceImpl implements ProductService {
 
 	private final ProductRepository productRepository;
+	// @Autowired
+	// private Environment environment;
+	@Value("${config.price.tax}")
+	private Double tax;
 
 	public ProductServiceImpl(@Qualifier("largeLists") ProductRepository productRepository) {
 		super();
@@ -22,7 +27,7 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<Product> listAll() {
 		return productRepository.listAll().stream().map((Product product) -> {
-			Double price = product.getPrice() * 1.25d;
+			Double price = product.getPrice() * tax; // environment.getProperty("double.price.tax", Double.class);
 			// return new Product(product.getId(), product.getName(), price);
 			product.setPrice(price);
 			return (Product) product.clone();
