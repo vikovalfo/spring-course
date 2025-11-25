@@ -2,19 +2,21 @@ package com.vikovalfo.spring_course.ioc.controllers;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vikovalfo.spring_course.ioc.models.Product;
-import com.vikovalfo.spring_course.ioc.services.ProductService;
+import com.vikovalfo.spring_course.ioc.services.ProductServiceImpl;
 
 @RestController
 @RequestMapping("/api")
 public class ProductController {
 
-	ProductService productService = new ProductService();
+	@Autowired
+	ProductServiceImpl productService;
 
 	@GetMapping
 	public List<Product> listAll() {
