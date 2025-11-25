@@ -1,4 +1,4 @@
-package com.vikovalfo.spring_course.ioc.repositories;
+package com.vikovalfo.spring_course.ioc.repositories.impl;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.core.io.ClassPathResource;
 
 import com.vikovalfo.spring_course.ioc.models.Product;
+import com.vikovalfo.spring_course.ioc.repositories.ProductRepository;
 
 import tools.jackson.core.JacksonException;
 import tools.jackson.databind.ObjectMapper;

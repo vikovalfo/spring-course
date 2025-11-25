@@ -1,4 +1,4 @@
-package com.vikovalfo.spring_course.ioc.repositories;
+package com.vikovalfo.spring_course.ioc.repositories.impl;
 
 import java.util.Arrays;
 import java.util.List;
@@ -6,13 +6,14 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.vikovalfo.spring_course.ioc.models.Product;
+import com.vikovalfo.spring_course.ioc.repositories.ProductRepository;
 
 @Repository("largeLists")
-public class ProductRepositoryImpl implements ProductRepository {
+public class ProductRepositoryFoo implements ProductRepository {
 
 	private List<Product> dataList;
 
-	public ProductRepositoryImpl() {
+	public ProductRepositoryFoo() {
 		this.dataList = Arrays.asList(new Product(1L, "Corsair mem module", 300),
 				new Product(2L, "CPU intel Corei7", 500), new Product(3L, "Power supply 800w", 150),
 				new Product(4L, "Motherboard Gigabyte", 450));

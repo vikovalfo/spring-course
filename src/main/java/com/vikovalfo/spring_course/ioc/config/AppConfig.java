@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.PropertySource;
 
 import com.vikovalfo.spring_course.ioc.repositories.ProductRepository;
-import com.vikovalfo.spring_course.ioc.repositories.ProductRepositoryJson;
+import com.vikovalfo.spring_course.ioc.repositories.impl.ProductRepositoryJson;
 
 @Configuration
 @PropertySource("classpath:config.properties")

@@ -1,4 +1,4 @@
-package com.vikovalfo.spring_course.ioc.services;
+package com.vikovalfo.spring_course.ioc.services.impl;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,16 +9,17 @@ import org.springframework.stereotype.Service;
 
 import com.vikovalfo.spring_course.ioc.models.Product;
 import com.vikovalfo.spring_course.ioc.repositories.ProductRepository;
+import com.vikovalfo.spring_course.ioc.services.ProductService;
 
 @Service
-public class ProductServiceImpl implements ProductService {
+public class ProductServiceFoo implements ProductService {
 
 	private final ProductRepository productRepository;
 
 	@Value("${config.price.tax}")
 	private Double tax;
 
-	public ProductServiceImpl(@Qualifier("productJson") ProductRepository productRepository) {
+	public ProductServiceFoo(@Qualifier("productJson") ProductRepository productRepository) {
 		super();
 		this.productRepository = productRepository;
 	}
