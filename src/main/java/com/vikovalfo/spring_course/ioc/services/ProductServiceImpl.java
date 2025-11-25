@@ -11,7 +11,7 @@ import com.vikovalfo.spring_course.ioc.repositories.ProductRepository;
 @Service
 public class ProductServiceImpl implements ProductService {
 
-	private ProductRepository productRepository;
+	private final ProductRepository productRepository;
 
 	public ProductServiceImpl(ProductRepository productRepository) {
 		super();
