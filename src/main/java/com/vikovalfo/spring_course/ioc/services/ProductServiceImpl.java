@@ -14,7 +14,7 @@ public class ProductServiceImpl implements ProductService {
 
 	private final ProductRepository productRepository;
 
-	public ProductServiceImpl(@Qualifier("productRepositoryImpl") ProductRepository productRepository) {
+	public ProductServiceImpl(@Qualifier("largeLists") ProductRepository productRepository) {
 		super();
 		this.productRepository = productRepository;
 	}

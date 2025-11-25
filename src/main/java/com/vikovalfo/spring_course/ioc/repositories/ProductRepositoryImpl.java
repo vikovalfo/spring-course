@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.vikovalfo.spring_course.ioc.models.Product;
 
-@Repository
+@Repository("largeLists")
 public class ProductRepositoryImpl implements ProductRepository {
 
 	private List<Product> dataList;
