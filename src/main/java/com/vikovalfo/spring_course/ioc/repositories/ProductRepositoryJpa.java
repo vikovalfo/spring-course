@@ -3,12 +3,10 @@ package com.vikovalfo.spring_course.ioc.repositories;
 import java.util.Collections;
 import java.util.List;
 
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
 import com.vikovalfo.spring_course.ioc.models.Product;
 
-@Primary
 @Repository
 public class ProductRepositoryJpa implements ProductRepository {
 

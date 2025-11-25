@@ -14,12 +14,11 @@ import com.vikovalfo.spring_course.ioc.repositories.ProductRepository;
 public class ProductServiceImpl implements ProductService {
 
 	private final ProductRepository productRepository;
-	// @Autowired
-	// private Environment environment;
+
 	@Value("${config.price.tax}")
 	private Double tax;
 
-	public ProductServiceImpl(@Qualifier("largeLists") ProductRepository productRepository) {
+	public ProductServiceImpl(@Qualifier("productJson") ProductRepository productRepository) {
 		super();
 		this.productRepository = productRepository;
 	}
@@ -27,8 +26,7 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<Product> listAll() {
 		return productRepository.listAll().stream().map((Product product) -> {
-			Double price = product.getPrice() * tax; // environment.getProperty("double.price.tax", Double.class);
-			// return new Product(product.getId(), product.getName(), price);
+			Double price = product.getPrice() * tax;
 			product.setPrice(price);
 			return (Product) product.clone();
 		}).collect(Collectors.toList());
