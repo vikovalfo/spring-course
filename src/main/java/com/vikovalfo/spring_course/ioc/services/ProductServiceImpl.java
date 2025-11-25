@@ -3,7 +3,6 @@ package com.vikovalfo.spring_course.ioc.services;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.vikovalfo.spring_course.ioc.models.Product;
@@ -14,8 +13,8 @@ public class ProductServiceImpl implements ProductService {
 
 	private ProductRepository productRepository;
 
-	@Autowired
-	public void setProductRepository(ProductRepository productRepository) {
+	public ProductServiceImpl(ProductRepository productRepository) {
+		super();
 		this.productRepository = productRepository;
 	}
 
