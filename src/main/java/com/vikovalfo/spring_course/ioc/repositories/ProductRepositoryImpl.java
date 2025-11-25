@@ -3,11 +3,11 @@ package com.vikovalfo.spring_course.ioc.repositories;
 import java.util.Arrays;
 import java.util.List;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import com.vikovalfo.spring_course.ioc.models.Product;
 
-@Component
+@Repository
 public class ProductRepositoryImpl implements ProductRepository {
 
 	private List<Product> dataList;

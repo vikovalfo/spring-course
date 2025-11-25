@@ -4,16 +4,20 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.vikovalfo.spring_course.ioc.models.Product;
-import com.vikovalfo.spring_course.ioc.repositories.ProductRepositoryImpl;
+import com.vikovalfo.spring_course.ioc.repositories.ProductRepository;
 
-@Component
+@Service
 public class ProductServiceImpl implements ProductService {
 
+	private ProductRepository productRepository;
+
 	@Autowired
-	private ProductRepositoryImpl productRepository;
+	public void setProductRepository(ProductRepository productRepository) {
+		this.productRepository = productRepository;
+	}
 
 	@Override
 	public List<Product> listAll() {

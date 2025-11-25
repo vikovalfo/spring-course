@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vikovalfo.spring_course.ioc.models.Product;
-import com.vikovalfo.spring_course.ioc.services.ProductServiceImpl;
+import com.vikovalfo.spring_course.ioc.services.ProductService;
 
 @RestController
 @RequestMapping("/api")
 public class ProductController {
 
 	@Autowired
-	ProductServiceImpl productService;
+	ProductService productService;
 
 	@GetMapping
 	public List<Product> listAll() {
