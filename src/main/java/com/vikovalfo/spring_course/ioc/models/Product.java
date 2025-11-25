@@ -1,8 +1,5 @@
 package com.vikovalfo.spring_course.ioc.models;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class Product implements Cloneable {
 
 	private Long id;
