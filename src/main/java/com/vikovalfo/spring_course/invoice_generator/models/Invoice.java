@@ -19,6 +19,8 @@ public class Invoice {
 
 	@Value("${invoice.desc}")
 	private String descriptionString;
+
+	@Autowired
 	List<Item> items;
 
 }
