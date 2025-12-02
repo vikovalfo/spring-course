@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+
 @Component
 public class Invoice {
 
@@ -19,6 +22,17 @@ public class Invoice {
 	@Autowired
 	@Qualifier("default")
 	List<Item> items;
+
+	@PostConstruct
+	public void init() {
+		this.description = this.description.concat(", of the client: ")
+				.concat(client.getName() + " " + client.getLastName());
+	}
+
+	@PreDestroy
+	public void destroy() {
+		System.out.println("destroying object...");
+	}
 
 	public Client getClient() {
 		return client;
