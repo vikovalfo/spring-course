@@ -3,6 +3,7 @@ package com.vikovalfo.spring_course.invoice_generator.models;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -12,10 +13,11 @@ public class Invoice {
 	@Autowired
 	private Client client;
 
-	@Value("${invoice.desc}")
+	@Value("${invoice.desc.office}")
 	private String description;
 
 	@Autowired
+	@Qualifier("default")
 	List<Item> items;
 
 	public Client getClient() {

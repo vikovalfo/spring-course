@@ -15,6 +15,7 @@ import com.vikovalfo.spring_course.invoice_generator.models.Product;
 public class InitBeans {
 
 	@Bean
+	// @Primary
 	List<Item> itemsInvoice() {
 		Product p1 = new Product("Reflex Camera", 800);
 		Product p2 = new Product("Scooter Honeywell", 750);
@@ -23,5 +24,15 @@ public class InitBeans {
 		Product p5 = new Product("MSI gamer laptop", 400);
 		return Arrays.asList(new Item(p1, 2), new Item(p2, 1), new Item(p3, 2), new Item(p4, 5),
 				new Item(p5, 1));
+	}
+
+	@Bean("default")
+	List<Item> itemsInvoiceOffice() {
+		Product p1 = new Product("Reflex Camera", 800);
+		Product p2 = new Product("Scooter Honeywell", 750);
+		Product p3 = new Product("Gengar Pokemon stuffed animal", 100);
+		Product p4 = new Product("Logitech mouse", 10);
+		Product p5 = new Product("MSI gamer laptop", 400);
+		return Arrays.asList(new Item(p1, 2), new Item(p2, 1), new Item(p3, 2), new Item(p4, 5), new Item(p5, 1));
 	}
 }
