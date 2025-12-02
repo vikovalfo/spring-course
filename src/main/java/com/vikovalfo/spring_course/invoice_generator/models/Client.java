@@ -3,11 +3,6 @@ package com.vikovalfo.spring_course.invoice_generator.models;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import lombok.Getter;
-import lombok.Setter;
-
-@Setter
-@Getter
 @Component
 public class Client {
 
@@ -16,5 +11,13 @@ public class Client {
 
 	@Value("${client.lastname}")
 	private String lastName;
+
+	public String getName() {
+		return name;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
 
 }

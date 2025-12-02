@@ -1,10 +1,5 @@
 package com.vikovalfo.spring_course.invoice_generator.models;
 
-import lombok.Getter;
-import lombok.Setter;
-
-@Setter
-@Getter
 public class Product {
 
 	private String name;
@@ -16,6 +11,22 @@ public class Product {
 	public Product(String name, Integer price) {
 		super();
 		this.name = name;
+		this.price = price;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Integer getPrice() {
+		return price;
+	}
+
+	public void setPrice(Integer price) {
 		this.price = price;
 	}
 
