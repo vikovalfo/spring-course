@@ -29,13 +29,7 @@ public class AppController {
 
 	@GetMapping("/show/{id}")
 	public User show(@PathVariable Long id) {
-		User result = userService.findById(id);
-		if (result != null) {
-			return result;
-
-		} else {
-			// throw new NullPointerException();
-			throw new UserNotFoundExcception("The user wasn't found");
-		}
+		User result = userService.findById(id).orElseThrow(() -> new UserNotFoundExcception("The user wasn't found"));
+		return result;
 	}
 }

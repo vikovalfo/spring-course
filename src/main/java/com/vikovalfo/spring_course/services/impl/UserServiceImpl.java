@@ -2,6 +2,7 @@ package com.vikovalfo.spring_course.services.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -28,7 +29,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User findById(long id) {
+	public Optional<User> findById(long id) {
 		User user = null;
 		for (User u : users) {
 			if (u.getId() == id) {
@@ -36,7 +37,12 @@ public class UserServiceImpl implements UserService {
 				break;
 			}
 		}
-		return user;
+
+		if (user == null) {
+			return Optional.empty();
+		}
+
+		return Optional.ofNullable(user);
 	}
 
 }
