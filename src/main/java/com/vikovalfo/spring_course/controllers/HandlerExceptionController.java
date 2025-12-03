@@ -6,11 +6,13 @@ import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotWritableException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
+import com.vikovalfo.spring_course.exceptions.UserNotFoundExcception;
 import com.vikovalfo.spring_course.models.Error;
 
 @RestControllerAdvice
@@ -51,6 +53,22 @@ public class HandlerExceptionController {
 
 		error.put("date", new Date());
 		error.put("error", "Number format error");
+		error.put("message", exception.getMessage());
+		error.put("status", HttpStatus.INTERNAL_SERVER_ERROR.value());
+
+		return error;
+
+	}
+
+	@ExceptionHandler({ NullPointerException.class, HttpMessageNotWritableException.class,
+			UserNotFoundExcception.class })
+	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+	public Map<String, Object> nullPointer(Exception exception) {
+
+		Map<String, Object> error = new HashMap<>();
+
+		error.put("date", new Date());
+		error.put("error", "Element requested is not present");
 		error.put("message", exception.getMessage());
 		error.put("status", HttpStatus.INTERNAL_SERVER_ERROR.value());
 

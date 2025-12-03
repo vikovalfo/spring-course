@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.vikovalfo.spring_course.exceptions.UserNotFoundExcception;
 import com.vikovalfo.spring_course.models.domain.User;
 import com.vikovalfo.spring_course.services.UserService;
 
@@ -33,7 +34,8 @@ public class AppController {
 			return result;
 
 		} else {
-			throw new NullPointerException();
+			// throw new NullPointerException();
+			throw new UserNotFoundExcception("The user wasn't found");
 		}
 	}
 }
