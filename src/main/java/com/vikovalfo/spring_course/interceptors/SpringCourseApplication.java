@@ -1,4 +1,4 @@
-package com.vikovalfo.spring_course;
+package com.vikovalfo.spring_course.interceptors;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
