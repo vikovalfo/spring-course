@@ -18,7 +18,7 @@ public class MvcConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         // registry.addInterceptor(loadingtimeInterceptor).addPathPatterns("/app/foo",
         // "/app/bar");
-        registry.addInterceptor(loadingtimeInterceptor).excludePathPatterns("/app/foo", "/app/**");
+        registry.addInterceptor(loadingtimeInterceptor).addPathPatterns("/app/**");
         // registry.addInterceptor(loadingtimeInterceptor).excludeHttpMethods(HttpMethod.GET);
 
     }

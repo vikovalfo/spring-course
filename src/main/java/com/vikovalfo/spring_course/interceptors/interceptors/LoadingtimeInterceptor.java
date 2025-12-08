@@ -26,6 +26,20 @@ public class LoadingtimeInterceptor implements HandlerInterceptor {
         long start = System.currentTimeMillis();
         request.setAttribute("start", start);
         Thread.sleep(new Random().nextInt(500));
+        /*
+         * Map<String, String> json = new HashMap<>();
+         * 
+         * json.put("message", "Do not have access to this resource");
+         * json.put("date", new Date().toString());
+         * 
+         * ObjectMapper mapper = new ObjectMapper();
+         * String jsonString = mapper.writeValueAsString(json);
+         * 
+         * response.setContentType("application/json");
+         * response.setStatus(401);
+         * response.getWriter().write(jsonString);
+         */
+
         return true;
     }
 
