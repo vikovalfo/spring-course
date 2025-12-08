@@ -1,5 +1,7 @@
 package com.vikovalfo.spring_course.interceptors.interceptors;
 
+import java.util.Random;
+
 import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +23,9 @@ public class LoadingtimeInterceptor implements HandlerInterceptor {
             throws Exception {
         HandlerMethod handlerMethod = ((HandlerMethod) handler);
         logger.info("Loading interceptor prehandler: incoming... " + handlerMethod.getMethod().getName());
+        long start = System.currentTimeMillis();
+        request.setAttribute("start", start);
+        Thread.sleep(new Random().nextInt(500));
         return true;
     }
 
@@ -30,6 +35,11 @@ public class LoadingtimeInterceptor implements HandlerInterceptor {
         HandlerMethod handlerMethod = ((HandlerMethod) handler);
         logger.info("Loading interceptor posthandler: outgoing... " +
                 handlerMethod.getMethod().getName());
+        long end = System.currentTimeMillis();
+        long start = ((long) request.getAttribute("start"));
+        long result = end - start;
+        logger.info("Elapsed time: " + result + " milliseconds");
+
     }
 
 }
