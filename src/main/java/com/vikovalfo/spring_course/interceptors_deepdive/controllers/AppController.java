@@ -17,9 +17,11 @@ public class AppController {
     public ResponseEntity<?> foo(HttpServletRequest request) {
 
         Map<String, Object> map = new HashMap<>();
-        map.put("message", "Welcome to the Customer attention center");
+
+        map.put("message", "Welcome to the Customer service center");
         map.put("date", new Date().toString());
         map.put("message", request.getAttribute("message"));
+
         return ResponseEntity.ok(map);
 
     }
