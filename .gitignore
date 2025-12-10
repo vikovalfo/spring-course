@@ -35,3 +35,6 @@ build/
 .project
 .classpath
 .dbeaver
+target/
+src/main/resources/META-INF/additional-spring-configuration-metadata.json
+bin/

@@ -8,7 +8,7 @@ import com.vikovalfo.spring_course.aop.services.GreetingService;
 public class GreetingServiceBasic implements GreetingService {
 
     @Override
-    public String sayhello(String person, String phrase) {
+	public String sayHello(String person, String phrase) {
         return phrase + " " + person;
     }
 
