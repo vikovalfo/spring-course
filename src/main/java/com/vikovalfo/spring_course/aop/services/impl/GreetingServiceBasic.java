@@ -12,4 +12,9 @@ public class GreetingServiceBasic implements GreetingService {
         return phrase + " " + person;
     }
 
+	@Override
+	public String sayHelloError(String person, String phrase) {
+		throw new RuntimeException("Some error");
+	}
+
 }

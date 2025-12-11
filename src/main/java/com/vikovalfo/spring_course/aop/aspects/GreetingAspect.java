@@ -3,6 +3,9 @@ package com.vikovalfo.spring_course.aop.aspects;
 import java.util.Arrays;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.slf4j.Logger;
@@ -12,12 +15,42 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class GreetingAspect {
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	@Before("execution(String com.vikovalfo.spring_course.aop.services.GreetingService.sayHello(...))")
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
+
+	@Before("execution(* com.vikovalfo.spring_course.aop.services.GreetingService.*(..))")
     public void loggerBefore(JoinPoint joinPoint) {
+
         String method = joinPoint.getSignature().getName();
         String args = Arrays.toString(joinPoint.getArgs());
         logger.info("Before: " + method + " with arguments: " + args);
+
     }
+
+	@After("execution(* com.vikovalfo.spring_course.aop.services.GreetingService.*(..))")
+	public void loggerAfter(JoinPoint joinPoint) {
+
+		String method = joinPoint.getSignature().getName();
+		String args = Arrays.toString(joinPoint.getArgs());
+		logger.info("After: " + method + " with arguments: " + args);
+
+	}
+
+	@AfterReturning("execution(* com.vikovalfo.spring_course.aop.services.GreetingService.*(..))")
+	public void loggerAfterReturning(JoinPoint joinPoint) {
+
+		String method = joinPoint.getSignature().getName();
+		String args = Arrays.toString(joinPoint.getArgs());
+		logger.info("After returning: " + method + " with arguments: " + args);
+
+	}
+
+	@AfterThrowing("execution(* com.vikovalfo.spring_course.aop.services.GreetingService.*(..))")
+	public void loggerAfterThrowing(JoinPoint joinPoint) {
+
+		String method = joinPoint.getSignature().getName();
+		String args = Arrays.toString(joinPoint.getArgs());
+		logger.info("After throwing exception: " + method + " with arguments: " + args);
+
+	}
 }
