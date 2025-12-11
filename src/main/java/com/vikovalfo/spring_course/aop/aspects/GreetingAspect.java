@@ -3,9 +3,11 @@ package com.vikovalfo.spring_course.aop.aspects;
 import java.util.Arrays;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.slf4j.Logger;
@@ -52,5 +54,25 @@ public class GreetingAspect {
 		String args = Arrays.toString(joinPoint.getArgs());
 		logger.info("After throwing exception: " + method + " with arguments: " + args);
 
+	}
+
+	@Around("execution(* com.vikovalfo.spring_course.aop.services.GreetingService.*(..))")
+	public Object loggerAround(ProceedingJoinPoint joinPoint) {
+
+		String method = joinPoint.getSignature().getName();
+		String args = Arrays.toString(joinPoint.getArgs());
+		Object proceeed = null;
+
+		try {
+
+			logger.info("Around: " + method + " with arguments: " + args);
+			proceeed = joinPoint.proceed();
+			logger.info("Around: " + method + " returned: " + proceeed);
+			return proceeed;
+
+		} catch (Throwable e) {
+			logger.info("Around: " + method + " thrown: " + e.getMessage());
+		}
+		return proceeed;
 	}
 }
