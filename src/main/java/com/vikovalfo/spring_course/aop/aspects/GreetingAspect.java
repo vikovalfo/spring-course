@@ -27,7 +27,7 @@ public class GreetingAspect {
 
         String method = joinPoint.getSignature().getName();
         String args = Arrays.toString(joinPoint.getArgs());
-        logger.info("Before: " + method + " with arguments: " + args);
+		logger.info("Before: " + method + " with arguments: " + args);
 
     }
 
