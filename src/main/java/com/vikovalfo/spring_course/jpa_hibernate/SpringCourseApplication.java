@@ -22,8 +22,11 @@ public class SpringCourseApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		List<Person> people = (List<Person>) personRepository.findAll();
 
+		// List<Person> people = (List<Person>) personRepository.findAll();
+
+		// List<Person> people = personRepository.findByProgrammingLanguage("Java");
+		List<Person> people = personRepository.searchingByProgrammingLanguage("Java");
 		people.forEach(System.out::println);
 	}
 
