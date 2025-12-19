@@ -10,7 +10,6 @@ import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
@@ -23,11 +22,7 @@ public class GreetingAspect {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	@Pointcut("execution(* com.vikovalfo.spring_course.aop.services.GreetingService.*(..))")
-	private void greetingLoggerPointCut() {
-	}
-
-	@Before("greetingLoggerPointCut()")
+	@Before("ServicePointcuts.greetingLoggerPointCut()")
     public void loggerBefore(JoinPoint joinPoint) {
 
         String method = joinPoint.getSignature().getName();
@@ -36,7 +31,7 @@ public class GreetingAspect {
 
     }
 
-	@After("greetingLoggerPointCut()")
+	@After("ServicePointcuts.greetingLoggerPointCut()")
 	public void loggerAfter(JoinPoint joinPoint) {
 
 		String method = joinPoint.getSignature().getName();
@@ -45,7 +40,7 @@ public class GreetingAspect {
 
 	}
 
-	@AfterReturning("greetingLoggerPointCut()")
+	@AfterReturning("ServicePointcuts.greetingLoggerPointCut()")
 	public void loggerAfterReturning(JoinPoint joinPoint) {
 
 		String method = joinPoint.getSignature().getName();
@@ -54,7 +49,7 @@ public class GreetingAspect {
 
 	}
 
-	@AfterThrowing("greetingLoggerPointCut()")
+	@AfterThrowing("ServicePointcuts.greetingLoggerPointCut()")
 	public void loggerAfterThrowing(JoinPoint joinPoint) {
 
 		String method = joinPoint.getSignature().getName();
@@ -63,7 +58,7 @@ public class GreetingAspect {
 
 	}
 
-	@Around("greetingLoggerPointCut()")
+	@Around("ServicePointcuts.greetingLoggerPointCut()")
 	public Object loggerAround(ProceedingJoinPoint joinPoint) {
 
 		String method = joinPoint.getSignature().getName();
