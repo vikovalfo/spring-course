@@ -21,7 +21,25 @@ public class SpringCourseApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+		findOne();
+	}
 
+	public void findOne() {
+		// Person person = personRepository.findById(1L).orElseThrow();
+		// System.out.println(person);
+		/*
+		 * Optional<Person> personOptional = personRepository.findById(1L);
+		 * Person person = null;
+		 * if (personOptional.isPresent()) {
+		 * person = personOptional.get();
+		 * 
+		 * }
+		 * System.out.println(person);
+		 */
+		personRepository.findById(1L).ifPresent(System.out::println);
+	}
+
+	public void listing() {
 		List<Object[]> people = personRepository.gettingPersonData();
 		people.stream().forEach(obj -> System.out.println("Name: " + obj[0] + ", Programming language: " + obj[1]));
 
