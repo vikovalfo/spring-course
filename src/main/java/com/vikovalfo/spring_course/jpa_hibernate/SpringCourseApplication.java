@@ -1,6 +1,7 @@
 package com.vikovalfo.spring_course.jpa_hibernate;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ public class SpringCourseApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+		update();
 	}
 
 	@Transactional
@@ -44,6 +46,45 @@ public class SpringCourseApplication implements CommandLineRunner {
 	public void create(String name, String lastName, String progLan) {
 		Person person = new Person(null, name, lastName, progLan);
 		personRepository.save(person);
+	}
+
+	@Transactional
+	public void update() {
+		Person person = null;
+		try (Scanner sc = new Scanner(System.in)) {
+			System.out.println("Enter the person's id: ");
+			long id = Integer.parseInt(sc.nextLine());
+
+			Optional<Person> optional = personRepository.findById(id);
+
+			if (optional.isPresent()) {
+				person = optional.get();
+				System.out.println(
+						"old person's name is " + person.getName() + ", Enter new: ");
+				String nm = sc.nextLine();
+				if (!person.getName().equalsIgnoreCase(nm)) {
+					person.setName(nm);
+				}
+				System.out.println(
+						"old person's last name is " + person.getLastName() + ", Enter new: ");
+				String lnm = sc.nextLine();
+				if (!person.getLastName().equalsIgnoreCase(lnm)) {
+					person.setLastName(lnm);
+				}
+				System.out.println(
+						"old person's programming language is " + person.getProgrammingLanguage() + ", Enter new: ");
+				String prolan = sc.nextLine();
+				if (!person.getProgrammingLanguage().equalsIgnoreCase(prolan)) {
+					person.setProgrammingLanguage(prolan);
+				}
+				Person updatedPerson = personRepository.save(person);
+				System.out.println(updatedPerson);
+			}
+		}
+	}
+
+	public boolean validateChanges() {
+		return true;
 	}
 
 	@Transactional(readOnly = true)
