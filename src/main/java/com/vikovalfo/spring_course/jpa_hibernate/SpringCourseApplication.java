@@ -21,7 +21,8 @@ public class SpringCourseApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		findOne();
+		System.out.println(personRepository.findOne(1L).get());
+		System.out.println(personRepository.findAllByProgrammingLanguage("ava"));
 	}
 
 	public void findOne() {

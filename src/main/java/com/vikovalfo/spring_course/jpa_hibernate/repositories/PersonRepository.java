@@ -1,6 +1,7 @@
 package com.vikovalfo.spring_course.jpa_hibernate.repositories;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -22,5 +23,11 @@ public interface PersonRepository extends CrudRepository<Person, Long> {
 
     @Query("SELECT p.name, p.programmingLanguage FROM Person p WHERE p.name = ?1 AND p.programmingLanguage = ?2")
     List<Object[]> gettingPersonData(String name, String programmingLanguage);
+
+    @Query("SELECT p FROM Person p WHERE p.id = ?1")
+    Optional<Person> findOne(Long id);
+
+    @Query("SELECT p FROM Person p WHERE p.programmingLanguage LIKE %:programmingLanguage%")
+    List<Person> findAllByProgrammingLanguage(String programmingLanguage);
 
 }
