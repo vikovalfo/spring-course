@@ -10,6 +10,9 @@ import com.vikovalfo.spring_course.jpa_hibernate.entities.Person;
 
 public interface PersonRepository extends CrudRepository<Person, Long> {
 
+    @Query("SELECT p.name FROM Person p WHERE p.id =:id")
+    String getNameById(Long id);
+
     List<Person> findByProgrammingLanguage(String programmingLanguage);
 
     @Query("SELECT p FROM Person p WHERE p.programmingLanguage = ?1")

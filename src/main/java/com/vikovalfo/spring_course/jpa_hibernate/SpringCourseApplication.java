@@ -25,7 +25,7 @@ public class SpringCourseApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		deleteOne();
+		System.out.println(personRepository.getNameById(1L));
 	}
 
 	@Transactional
