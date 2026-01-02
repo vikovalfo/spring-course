@@ -25,7 +25,7 @@ public class SpringCourseApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		update();
+		deleteOne();
 	}
 
 	@Transactional
@@ -83,8 +83,20 @@ public class SpringCourseApplication implements CommandLineRunner {
 		}
 	}
 
-	public boolean validateChanges() {
-		return true;
+	@Transactional
+	public void deleteOne() {
+		Person person = null;
+		try (Scanner sc = new Scanner(System.in)) {
+			System.out.println("Enter the person's id: ");
+			long id = Integer.parseInt(sc.nextLine());
+
+			Optional<Person> optional = personRepository.findById(id);
+
+			if (optional.isPresent()) {
+				person = optional.get();
+				personRepository.deleteById(person.getId());
+			}
+		}
 	}
 
 	@Transactional(readOnly = true)
