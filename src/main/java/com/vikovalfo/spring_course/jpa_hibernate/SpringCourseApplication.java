@@ -92,10 +92,15 @@ public class SpringCourseApplication implements CommandLineRunner {
 
 			Optional<Person> optional = personRepository.findById(id);
 
-			if (optional.isPresent()) {
-				person = optional.get();
-				personRepository.deleteById(person.getId());
-			}
+			/*
+			 * if (optional.isPresent()) {
+			 * person = optional.get();
+			 * personRepository.deleteById(person.getId());
+			 * }
+			 */
+
+			optional.ifPresentOrElse((p) -> personRepository.deleteById(p.getId()),
+					() -> System.out.println("the element with id was deleted"));
 		}
 	}
 
