@@ -5,13 +5,15 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import com.vikovalfo.spring_course.jpa_hibernate.entities.Person;
 
+@Repository
 public interface PersonRepository extends CrudRepository<Person, Long> {
 
-    @Query("SELECT p.name FROM Person p WHERE p.id =:id")
-    String getNameById(Long id);
+    @Query("SELECT concat(p.name, ' ', p.id) as fullname FROM Person p WHERE p.id = :id")
+    String getFullNameById(Long id);
 
     List<Person> findByProgrammingLanguage(String programmingLanguage);
 
@@ -20,6 +22,12 @@ public interface PersonRepository extends CrudRepository<Person, Long> {
 
     @Query("SELECT p.name, p.programmingLanguage FROM Person p")
     List<Object[]> gettingPersonData();
+
+    @Query("SELECT p.id, p.name, p.lastName, p.programmingLanguage FROM Person p")
+    List<Object[]> gettingPersonDataList();
+
+    @Query("SELECT p.name, p.lastName, p.programmingLanguage FROM Person p WHERE p.id = :id")
+    Object gettingPersonDataById(Long id);
 
     @Query("SELECT p.name, p.programmingLanguage FROM Person p WHERE p.programmingLanguage = ?1")
     List<Object[]> gettingPersonData(String programmingLanguage);

@@ -25,7 +25,34 @@ public class SpringCourseApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		System.out.println(personRepository.getNameById(1L));
+		customQuery();
+	}
+
+	@Transactional(readOnly = true)
+	public void personToQuery() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter the id of the person to query: ");
+		String id = sc.nextLine();
+		System.out.println(personRepository.getFullNameById(Long.parseLong(id)));
+		sc.close();
+	}
+
+	@Transactional(readOnly = true)
+	public void customQuery() {
+		List<Object[]> objs = personRepository.gettingPersonDataList();
+		for (Object[] object : objs) {
+			System.out.println(
+					"[id=" + object[0] + ", name=" + object[1] + ", lastName=" + object[2] + ", programmingLanguage="
+							+ object[3] + "]");
+		}
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter the id of the person to query: ");
+		String id = sc.nextLine();
+		Object[] person = (Object[]) personRepository.gettingPersonDataById(Long.parseLong(id));
+		System.out.println(
+				"[name=" + person[0] + ", lastName=" + person[1] + ", programmingLanguage="
+						+ person[2] + "]");
+		sc.close();
 	}
 
 	@Transactional
