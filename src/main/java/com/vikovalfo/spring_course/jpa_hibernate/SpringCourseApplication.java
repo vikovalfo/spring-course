@@ -34,6 +34,8 @@ public class SpringCourseApplication implements CommandLineRunner {
 		List<Person> personList = null;
 		personList = personRepository.findAllBetweenIdRange();
 		personList.forEach(p -> System.out.println(p));
+		personList = personRepository.findByIdBetween(2L, 5L);
+		personList.forEach(p -> System.out.println(p));
 	}
 
 	@Transactional(readOnly = true)
