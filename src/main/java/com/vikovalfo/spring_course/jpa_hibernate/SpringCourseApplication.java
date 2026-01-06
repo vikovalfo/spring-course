@@ -26,7 +26,14 @@ public class SpringCourseApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		customQueryBetween();
+		countMaxMin();
+	}
+
+	@Transactional(readOnly = true)
+	void countMaxMin() {
+		System.out.println(personRepository.countPerson());
+		System.out.println(personRepository.minId());
+		System.out.println(personRepository.maxId());
 	}
 
 	@Transactional(readOnly = true)
