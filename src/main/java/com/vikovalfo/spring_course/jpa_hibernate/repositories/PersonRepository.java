@@ -13,13 +13,19 @@ import com.vikovalfo.spring_course.jpa_hibernate.dto.PersonDTO;
 @Repository
 public interface PersonRepository extends CrudRepository<Person, Long> {
 
+    @Query("SELECT DISTINCT(p.name) FROM Person p")
+    List<String> findAllNamesDistinct();
+
+    @Query("SELECT DISTINCT(p.programmingLanguage) FROM Person p")
+    List<String> findAllProgrammingLanguagesDistinct();
+
     @Query("SELECT new com.vikovalfo.spring_course.jpa_hibernate.dto.PersonDTO(p.name, p.lastName) FROM Person p")
     List<PersonDTO> findallClassPersonDTOByConstructor();
 
     @Query("SELECT new Person(p.name, p.lastName) FROM Person p")
     List<Person> findallClassPersonByConstructor();
 
-    @Query("SELECT concat(p.name, ' ', p.id) as fullname FROM Person p WHERE p.id = :id")
+    @Query("SELECT CONCAT(p.name, ' ', p.id) as fullname FROM Person p WHERE p.id = :id")
     String getFullNameById(Long id);
 
     List<Person> findByProgrammingLanguage(String programmingLanguage);

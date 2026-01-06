@@ -26,11 +26,19 @@ public class SpringCourseApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		customQuery2();
+		getName();
 	}
 
 	@Transactional(readOnly = true)
-	public void personToQuery() {
+	void getName() {
+		List<String> nameList = personRepository.findAllNamesDistinct();
+		nameList.forEach(p -> System.out.println(p));
+		List<String> plList = personRepository.findAllProgrammingLanguagesDistinct();
+		plList.forEach(p -> System.out.println(p));
+	}
+
+	@Transactional(readOnly = true)
+	void personToQuery() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter the id of the person to query: ");
 		String id = sc.nextLine();
@@ -39,7 +47,7 @@ public class SpringCourseApplication implements CommandLineRunner {
 	}
 
 	@Transactional(readOnly = true)
-	public void customQuery() {
+	void customQuery() {
 		List<Object[]> objs = personRepository.gettingPersonDataList();
 		for (Object[] object : objs) {
 			System.out.println(
@@ -57,7 +65,7 @@ public class SpringCourseApplication implements CommandLineRunner {
 	}
 
 	@Transactional(readOnly = true)
-	public void customQuery2() {
+	void customQuery2() {
 		List<Object[]> objs = personRepository.findAllMixedPerson();
 		for (Object[] object : objs) {
 			System.out.println(
@@ -72,7 +80,7 @@ public class SpringCourseApplication implements CommandLineRunner {
 	}
 
 	@Transactional
-	public void createFromCommandLine() {
+	void createFromCommandLine() {
 		String name, lastName, progLan;
 		try (Scanner sc = new Scanner(System.in)) {
 			System.out.println("Name: ");
@@ -86,13 +94,13 @@ public class SpringCourseApplication implements CommandLineRunner {
 	}
 
 	@Transactional
-	public void create(String name, String lastName, String progLan) {
+	void create(String name, String lastName, String progLan) {
 		Person person = new Person(null, name, lastName, progLan);
 		personRepository.save(person);
 	}
 
 	@Transactional
-	public void update() {
+	void update() {
 		Person person = null;
 		try (Scanner sc = new Scanner(System.in)) {
 			System.out.println("Enter the person's id: ");
@@ -127,7 +135,7 @@ public class SpringCourseApplication implements CommandLineRunner {
 	}
 
 	@Transactional
-	public void deleteOne() {
+	void deleteOne() {
 		Person person = null;
 		try (Scanner sc = new Scanner(System.in)) {
 			System.out.println("Enter the person's id: ");
@@ -148,13 +156,13 @@ public class SpringCourseApplication implements CommandLineRunner {
 	}
 
 	@Transactional(readOnly = true)
-	public void FindAll() {
+	void FindAll() {
 		System.out.println(personRepository.findOne(1L).get());
 		System.out.println(personRepository.findAllByProgrammingLanguage("ava"));
 	}
 
 	@Transactional(readOnly = true)
-	public void findOne() {
+	void findOne() {
 		// Person person = personRepository.findById(1L).orElseThrow();
 		// System.out.println(person);
 		/*
@@ -170,7 +178,7 @@ public class SpringCourseApplication implements CommandLineRunner {
 	}
 
 	@Transactional(readOnly = true)
-	public void listing() {
+	void listing() {
 		List<Object[]> people = personRepository.gettingPersonData();
 		people.stream().forEach(obj -> System.out.println("Name: " + obj[0] + ", Programming language: " + obj[1]));
 
