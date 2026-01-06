@@ -10,6 +10,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.vikovalfo.spring_course.jpa_hibernate.dto.PersonDTO;
 import com.vikovalfo.spring_course.jpa_hibernate.entities.Person;
 import com.vikovalfo.spring_course.jpa_hibernate.repositories.PersonRepository;
 
@@ -25,7 +26,7 @@ public class SpringCourseApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		customQuery();
+		customQuery2();
 	}
 
 	@Transactional(readOnly = true)
@@ -53,6 +54,21 @@ public class SpringCourseApplication implements CommandLineRunner {
 				"[name=" + person[0] + ", lastName=" + person[1] + ", programmingLanguage="
 						+ person[2] + "]");
 		sc.close();
+	}
+
+	@Transactional(readOnly = true)
+	public void customQuery2() {
+		List<Object[]> objs = personRepository.findAllMixedPerson();
+		for (Object[] object : objs) {
+			System.out.println(
+					"[person=" + object[0] + ", programming language=" + object[1] + "]");
+		}
+
+		List<Person> people = personRepository.findallClassPersonByConstructor();
+		people.forEach(p -> System.out.println(p));
+
+		List<PersonDTO> people2 = personRepository.findallClassPersonDTOByConstructor();
+		people2.forEach(p -> System.out.println(p.toString()));
 	}
 
 	@Transactional

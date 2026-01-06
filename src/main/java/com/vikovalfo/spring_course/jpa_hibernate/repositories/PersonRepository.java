@@ -8,9 +8,16 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import com.vikovalfo.spring_course.jpa_hibernate.entities.Person;
+import com.vikovalfo.spring_course.jpa_hibernate.dto.PersonDTO;
 
 @Repository
 public interface PersonRepository extends CrudRepository<Person, Long> {
+
+    @Query("SELECT new com.vikovalfo.spring_course.jpa_hibernate.dto.PersonDTO(p.name, p.lastName) FROM Person p")
+    List<PersonDTO> findallClassPersonDTOByConstructor();
+
+    @Query("SELECT new Person(p.name, p.lastName) FROM Person p")
+    List<Person> findallClassPersonByConstructor();
 
     @Query("SELECT concat(p.name, ' ', p.id) as fullname FROM Person p WHERE p.id = :id")
     String getFullNameById(Long id);
@@ -22,6 +29,9 @@ public interface PersonRepository extends CrudRepository<Person, Long> {
 
     @Query("SELECT p.name, p.programmingLanguage FROM Person p")
     List<Object[]> gettingPersonData();
+
+    @Query("SELECT p, p.programmingLanguage FROM Person p")
+    List<Object[]> findAllMixedPerson();
 
     @Query("SELECT p.id, p.name, p.lastName, p.programmingLanguage FROM Person p")
     List<Object[]> gettingPersonDataList();
