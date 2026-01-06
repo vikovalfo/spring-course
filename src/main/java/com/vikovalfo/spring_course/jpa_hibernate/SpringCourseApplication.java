@@ -26,7 +26,14 @@ public class SpringCourseApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		getNamesList();
+		customQueryBetween();
+	}
+
+	@Transactional(readOnly = true)
+	void customQueryBetween() {
+		List<Person> personList = null;
+		personList = personRepository.findAllBetweenIdRange();
+		personList.forEach(p -> System.out.println(p));
 	}
 
 	@Transactional(readOnly = true)

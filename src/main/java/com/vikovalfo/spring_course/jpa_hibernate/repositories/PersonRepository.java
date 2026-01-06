@@ -13,6 +13,9 @@ import com.vikovalfo.spring_course.jpa_hibernate.dto.PersonDTO;
 @Repository
 public interface PersonRepository extends CrudRepository<Person, Long> {
 
+    @Query("SELECT p FROM Person p WHERE p.id BETWEEN 2 AND 5")
+    List<Person> findAllBetweenIdRange();
+
     @Query("SELECT LOWER(p.name || ' ' || p.lastName) FROM Person p")
     List<String> findAllFullNameConcatLower();
 
