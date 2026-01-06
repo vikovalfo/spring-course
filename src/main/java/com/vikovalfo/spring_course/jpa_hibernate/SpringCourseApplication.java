@@ -26,7 +26,18 @@ public class SpringCourseApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		getName();
+		getNamesList();
+	}
+
+	@Transactional(readOnly = true)
+	void getNamesList() {
+		List<String> nameList = null;
+		nameList = personRepository.findAllFullNameConcat();
+		nameList.forEach(p -> System.out.println(p));
+		nameList = personRepository.findAllFullNameConcatUpper();
+		nameList.forEach(p -> System.out.println(p));
+		nameList = personRepository.findAllFullNameConcatLower();
+		nameList.forEach(p -> System.out.println(p));
 	}
 
 	@Transactional(readOnly = true)

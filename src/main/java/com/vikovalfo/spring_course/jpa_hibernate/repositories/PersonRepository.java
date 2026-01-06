@@ -13,6 +13,16 @@ import com.vikovalfo.spring_course.jpa_hibernate.dto.PersonDTO;
 @Repository
 public interface PersonRepository extends CrudRepository<Person, Long> {
 
+    @Query("SELECT LOWER(p.name || ' ' || p.lastName) FROM Person p")
+    List<String> findAllFullNameConcatLower();
+
+    @Query("SELECT UPPER(p.name || ' ' || p.lastName) FROM Person p")
+    List<String> findAllFullNameConcatUpper();
+
+    // @Query("SELECT CONCAT(p.name, ' ', p.lastName) FROM Person p")
+    @Query("SELECT p.name || ' ' || p.lastName FROM Person p")
+    List<String> findAllFullNameConcat();
+
     @Query("SELECT DISTINCT(p.name) FROM Person p")
     List<String> findAllNamesDistinct();
 
