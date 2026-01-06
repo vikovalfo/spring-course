@@ -32,7 +32,7 @@ public class SpringCourseApplication implements CommandLineRunner {
 	@Transactional(readOnly = true)
 	void customQueryBetween() {
 		List<Person> personList = null;
-		personList = personRepository.findAllBetweenIdRange();
+		personList = personRepository.findAllBetweenIdRange(1L, 4L);
 		personList.forEach(p -> System.out.println(p));
 		personList = personRepository.findByIdBetween(2L, 5L);
 		personList.forEach(p -> System.out.println(p));
