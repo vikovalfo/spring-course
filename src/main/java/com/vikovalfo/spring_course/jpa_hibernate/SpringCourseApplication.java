@@ -1,5 +1,6 @@
 package com.vikovalfo.spring_course.jpa_hibernate;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -26,7 +27,13 @@ public class SpringCourseApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		subQuery();
+		whereIn();
+	}
+
+	@Transactional
+	void whereIn() {
+		List<Person> list = personRepository.getPersonsByIds(Arrays.asList(2L, 3L));
+		System.out.println(list);
 	}
 
 	@Transactional
