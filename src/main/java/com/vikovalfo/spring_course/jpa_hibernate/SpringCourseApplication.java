@@ -31,9 +31,17 @@ public class SpringCourseApplication implements CommandLineRunner {
 
 	@Transactional(readOnly = true)
 	void countMaxMin() {
-		System.out.println(personRepository.countPerson());
-		System.out.println(personRepository.minId());
-		System.out.println(personRepository.maxId());
+		List<Object[]> list = null;
+		System.out.println(personRepository.getCountPerson());
+		System.out.println(personRepository.getMinId());
+		System.out.println(personRepository.getMaxId());
+		list = personRepository.getPersonNameLength();
+		for (Object[] object : list) {
+			System.out.println(
+					"[name=" + object[0] + ", length=" + object[1] + "]");
+		}
+		System.out.println(personRepository.getPersonNameMinLength());
+		System.out.println(personRepository.getPersonNameMaxLength());
 	}
 
 	@Transactional(readOnly = true)

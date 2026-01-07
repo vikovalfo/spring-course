@@ -13,14 +13,23 @@ import com.vikovalfo.spring_course.jpa_hibernate.dto.PersonDTO;
 @Repository
 public interface PersonRepository extends CrudRepository<Person, Long> {
 
+    @Query("SELECT MIN(LENGTH(p.name)) FROM Person p")
+    Integer getPersonNameMinLength();
+
+    @Query("SELECT MAX(LENGTH(p.name)) FROM Person p")
+    Integer getPersonNameMaxLength();
+
+    @Query("SELECT p.name, LENGTH(p.name) FROM Person p")
+    List<Object[]> getPersonNameLength();
+
     @Query("SELECT COUNT(p) FROM Person p")
-    Long countPerson();
+    Long getCountPerson();
 
     @Query("SELECT MIN(p.id) FROM Person p")
-    Long minId();
+    Long getMinId();
 
     @Query("SELECT MAX(p.id) FROM Person p")
-    Long maxId();
+    Long getMaxId();
 
     List<Person> findByIdBetween(Long id1, Long id2);
 
