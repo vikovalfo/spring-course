@@ -26,7 +26,25 @@ public class SpringCourseApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		resumeAggregation();
+		subQuery();
+	}
+
+	@Transactional
+	void subQuery() {
+		List<Object[]> list = null;
+		list = personRepository.getShorterName();
+		for (Object[] object : list) {
+			System.out.println(
+					"[name=" + object[0] + ", length=" + object[1] + "]");
+		}
+
+		Optional<Person> personOptional = personRepository.getLastRegistration();
+		Person person = null;
+		if (personOptional.isPresent()) {
+			person = personOptional.get();
+
+		}
+		System.out.println(person);
 	}
 
 	@Transactional
