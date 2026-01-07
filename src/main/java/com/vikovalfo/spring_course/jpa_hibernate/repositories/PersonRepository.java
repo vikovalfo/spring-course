@@ -13,6 +13,9 @@ import com.vikovalfo.spring_course.jpa_hibernate.dto.PersonDTO;
 @Repository
 public interface PersonRepository extends CrudRepository<Person, Long> {
 
+    @Query("SELECT MIN(p.id), MAX(p.id), SUM(p.id), AVG(LENGTH(p.name)), COUNT(p) FROM Person p")
+    Object getResumeAggregationfuction();
+
     @Query("SELECT MIN(LENGTH(p.name)) FROM Person p")
     Integer getPersonNameMinLength();
 

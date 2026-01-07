@@ -26,7 +26,15 @@ public class SpringCourseApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		countMaxMin();
+		resumeAggregation();
+	}
+
+	@Transactional
+	void resumeAggregation() {
+		Object[] resume = (Object[]) personRepository.getResumeAggregationfuction();
+		System.out.println(
+				"[min=" + resume[0] + ", max=" + resume[1] + ", sum="
+						+ resume[2] + ", avg=" + resume[3] + ", count=" + resume[4] + "]");
 	}
 
 	@Transactional(readOnly = true)
