@@ -1,6 +1,6 @@
-INSERT INTO people (name, last_name, programming_language) VALUES ('Andres', 'Guzman', 'Java');
-INSERT INTO people (name, last_name, programming_language) VALUES ('Pepe', 'Doe', 'Python');
-INSERT INTO people (name, last_name, programming_language) VALUES ('John', 'Dow', 'JavaScript');
-INSERT INTO people (name, last_name, programming_language) VALUES ('Maria', 'Roe', 'Java');
-INSERT INTO people (name, last_name, programming_language) VALUES ('Josefa', 'Rae', 'Java');
-INSERT INTO people (name, last_name, programming_language) VALUES ('Alessa', 'Valencia', 'C++');
+INSERT INTO people (name, last_name, programming_language, created_at) VALUES ('Andres', 'Guzman', 'Java', NOW());
+INSERT INTO people (name, last_name, programming_language, created_at) VALUES ('Pepe', 'Doe', 'Python', NOW());
+INSERT INTO people (name, last_name, programming_language, created_at) VALUES ('John', 'Dow', 'JavaScript', NOW());
+INSERT INTO people (name, last_name, programming_language, created_at) VALUES ('Maria', 'Roe', 'Java', NOW());
+INSERT INTO people (name, last_name, programming_language, created_at) VALUES ('Josefa', 'Rae', 'Java', NOW());
+INSERT INTO people (name, last_name, programming_language, created_at) VALUES ('Alessa', 'Valencia', 'C++', NOW());

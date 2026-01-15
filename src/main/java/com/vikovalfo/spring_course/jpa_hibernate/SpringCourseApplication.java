@@ -27,7 +27,8 @@ public class SpringCourseApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		whereIn();
+		// createFromCommandLine();
+		update();
 	}
 
 	@Transactional
@@ -158,6 +159,7 @@ public class SpringCourseApplication implements CommandLineRunner {
 			System.out.println("Programming language: ");
 			progLan = sc.nextLine();
 			create(name, lastName, progLan);
+			sc.close();
 		}
 	}
 
@@ -172,7 +174,7 @@ public class SpringCourseApplication implements CommandLineRunner {
 		Person person = null;
 		try (Scanner sc = new Scanner(System.in)) {
 			System.out.println("Enter the person's id: ");
-			long id = Integer.parseInt(sc.nextLine());
+			long id = Integer.parseInt(sc.next());
 
 			Optional<Person> optional = personRepository.findById(id);
 
@@ -199,12 +201,13 @@ public class SpringCourseApplication implements CommandLineRunner {
 				Person updatedPerson = personRepository.save(person);
 				System.out.println(updatedPerson);
 			}
+			sc.close();
 		}
 	}
 
 	@Transactional
 	void deleteOne() {
-		Person person = null;
+		// Person person = null;
 		try (Scanner sc = new Scanner(System.in)) {
 			System.out.println("Enter the person's id: ");
 			long id = Integer.parseInt(sc.nextLine());
