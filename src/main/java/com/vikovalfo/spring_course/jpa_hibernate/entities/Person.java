@@ -3,12 +3,12 @@ package com.vikovalfo.spring_course.jpa_hibernate.entities;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 
 @Entity
@@ -21,14 +21,11 @@ public class Person {
     private String name;
     private String lastName;
 
-    @Column(name = "created_at")
-    private LocalDateTime createdAt;
-
-    @Column(name = "updated_at")
-    private LocalDateTime updatedAt;
-
     @Column(name = "programming_language")
     private String programmingLanguage;
+
+    @Embedded
+    private Audit audit = new Audit();
 
     public Person(Long id, String name, String lastName, String programmingLanguage) {
         this.id = id;
@@ -43,18 +40,6 @@ public class Person {
     }
 
     public Person() {
-    }
-
-    @PrePersist
-    public void prePersist() {
-        System.out.println("lifecycle entity event: pre-persist");
-        this.createdAt = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    public void preUpdate() {
-        System.out.println("lifecycle entity event: pre-update");
-        this.updatedAt = LocalDateTime.now();
     }
 
     public Long getId() {
@@ -92,7 +77,8 @@ public class Person {
     @Override
     public String toString() {
         return "[id=" + id + ", name=" + name + ", lastName=" + lastName + ", programmingLanguage="
-                + programmingLanguage + "]";
+                + programmingLanguage + "created_at=" + audit.getCreatedAt() + "updated_at=" + audit.getUpdatedAt()
+                + "]";
     }
 
 }
