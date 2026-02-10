@@ -17,6 +17,8 @@ public class Invoice {
     private Long total;
 
     @ManyToOne
+    // @JoinColumn(name = "id_temp_client")
+    // @JoinColumn
     private Client client;
 
     public Invoice(String description, Long total) {
