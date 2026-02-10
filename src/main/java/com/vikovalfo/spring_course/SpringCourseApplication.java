@@ -29,8 +29,7 @@ public class SpringCourseApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		oneToMany();
-		oneToManyFind();
+		oneToManyDelete();
 	}
 
 	@Transactional
@@ -58,6 +57,31 @@ public class SpringCourseApplication implements CommandLineRunner {
 			Client client = optionalClient.orElseThrow();
 			System.out.println(client.toString());
 		}
+	}
+
+	@Transactional
+	void oneToManyDelete() {
+		Client client = new Client("Lesty", "Eleonor");
+
+		Address address1 = new Address("Evergreeen", 123);
+		Address address2 = new Address("Central Perk", 456);
+		
+		client.getAddresses().add(address1);
+		client.getAddresses().add(address2);
+
+		Client clientDb = clientRepository.save(client);
+
+		//System.out.println(clientDb.toString());
+
+		//clientRepository.deleteById(clientDb.getId());
+
+		Optional<Client> optionalClient = clientRepository.findById(clientDb.getId());
+			optionalClient.ifPresent((elem)->{
+			elem.getAddresses().remove(clientDb.getAddresses().get(0));
+			clientRepository.save(elem);
+			System.out.println(elem);
+		});
+
 	}
 
 	@Transactional

@@ -24,7 +24,7 @@ public class Client {
     private String name;
     private String lastName;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     // @JoinColumn(name = "client_id")
     @JoinTable(
         name = "tbl_client_addresses", 
