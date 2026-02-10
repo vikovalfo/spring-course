@@ -30,6 +30,7 @@ public class SpringCourseApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		oneToMany();
+		oneToManyFind();
 	}
 
 	@Transactional
@@ -43,10 +44,20 @@ public class SpringCourseApplication implements CommandLineRunner {
 		client.getAddresses().add(address1);
 		client.getAddresses().add(address2);
 
-		Client clientDb = clientRepository.save(client);
+		clientRepository.save(client);
 
-		System.out.println(clientDb.toString());
+		// System.out.println(clientDb.toString());
 
+	}
+
+	@Transactional
+	void oneToManyFind() {
+
+		Optional<Client> optionalClient = clientRepository.findById(3L);
+		if (optionalClient.isPresent()) {
+			Client client = optionalClient.orElseThrow();
+			System.out.println(client.toString());
+		}
 	}
 
 	@Transactional
