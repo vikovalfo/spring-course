@@ -1,9 +1,14 @@
 package com.vikovalfo.spring_course.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -15,12 +20,25 @@ public class Client {
     private String name;
     private String lastName;
 
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    List<Address> addresses;
+
     public Client(String name, String lastName) {
+        this();
         this.name = name;
         this.lastName = lastName;
     }
 
+    public List<Address> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<Address> addresses) {
+        this.addresses = addresses;
+    }
+
     public Client() {
+        addresses = new ArrayList<>();
     }
 
     public Long getId() {
@@ -49,7 +67,7 @@ public class Client {
 
     @Override
     public String toString() {
-        return "{id=" + id + ", name=" + name + ", lastName=" + lastName + "}";
+        return "{id=" + id + ", name=" + name + ", lastName=" + lastName + ", addresses=" + addresses + "}";
     }
 
 }
