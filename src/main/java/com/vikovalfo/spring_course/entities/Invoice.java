@@ -18,8 +18,7 @@ public class Invoice {
     private Long total;
 
     @ManyToOne
-    @JoinColumn(name = "id_temp_client")
-    // @JoinColumn
+    @JoinColumn(name = "client_id")
     private Client client;
 
     public Invoice(String description, Long total) {
@@ -54,11 +53,6 @@ public class Invoice {
         this.total = total;
     }
 
-    @Override
-    public String toString() {
-        return "{id=" + id + ", description=" + description + ", total=" + total + ", client=" + client + "}";
-    }
-
     public Client getClient() {
         return client;
     }
@@ -66,5 +60,11 @@ public class Invoice {
     public void setClient(Client client) {
         this.client = client;
     }
+
+    @Override
+    public String toString() {
+        return "{id=" + id + ", description=" + description + ", total=" + total + "}";
+    }
+
 
 }
