@@ -1,5 +1,7 @@
 package com.vikovalfo.spring_course;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -25,7 +27,7 @@ public class SpringCourseApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		manyToOne();
+		manyToOneFindbyIdClient();
 	}
 
 	void manyToOne() {
@@ -38,6 +40,21 @@ public class SpringCourseApplication implements CommandLineRunner {
 		Invoice invoiceDb = invoiceRepository.save(invoice);
 
 		System.out.println(invoiceDb.toString());
+	}
+
+	void manyToOneFindbyIdClient() {
+
+		Optional<Client> optionalClient = clientRepository.findById(2L);
+
+		if (optionalClient.isPresent()) {
+			Client client = optionalClient.orElseThrow();
+			Invoice invoice = new Invoice("Office expenses", 2000L);
+			invoice.setClient(client);
+			Invoice invoiceDb = invoiceRepository.save(invoice);
+
+			System.out.println(invoiceDb.toString());
+		}
+
 	}
 
 }
